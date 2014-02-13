@@ -1,0 +1,8 @@
+disable 'employees'
+drop 'employees'
+disable 'projects'
+drop 'projects'
+disable 'defects'
+drop 'defects'
+disable 'contributions'
+drop 'contributions'

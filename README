@@ -1,0 +1,99 @@
+Sima Dragos-Bogdan, 342C5
+AII - TEMA4
+Evaluarea activităţii angajaţilor din cadrul departamentelor de programare şi
+controlul calităţii într-o companie dezvoltatoare de software
+
+ 
+Cuprins
+1.Functionalitate
+2.Utilizare
+3.Implementare
+4.Testare
+5.Continutul Arhivei
+
+ 
+1. Functionalitate
+Programul monitorizeaza performanţelor angajaţilor din departamentele de 
+programare şi asigurare a calităţii, prin stabilirea contribuţiei aduse de 
+aceştia în cadrul fiecărui proiect în care au fost implicaţi, simplificând 
+atribuţiile responsabilului de echipă şi obiectivizând totodată a procesului 
+de evaluare prin utilizarea unor parametrii cantitativi concreţi.
+
+Acesta, genereaza două rapoarte sub forma unor fişiere text, în care se 
+prezinta contribuţia fiecărui angajat în cadrul fiecărui proiect, prin 
+contorizarea numărului de defecte la care a contribuit, precum si numarul celor
+pe care le-a rezolvat (din fiecare tip de severitate), respectiv numărul de 
+proiecte şi numărul total de defecte în care a fost implicat, de la angajarea 
+sa în organizaţie.
+
+Un raport detaliat conţine numele şi prenumele angajatului, denumirea 
+proiectului pentru care se afişează informaţiile şi severitatea defectelor 
+contorizate:
+
+NUMEk Prenumek, denumire_proiectk, denumire_severitatek = număr_defecte
+
+Un raport sintetic conţine numele şi prenumele angajatului denumirea 
+departamentului în care lucrează acesta, numărul total de proiecte şi numărul 
+total de defecte:
+
+NUMEk Prenumek, denumire_departamentk = număr_proiecte, număr_defecte
+ 
+
+2. Utilizare
+- Instalare framework Hadoop (Hadoop 2.2.0 şi HBase 0.96)
+- pornire sistem de fisiere si de gestiune a resurselor
+	> cd /usr/local/hadoop/sbin/
+	>./start-dfs.sh
+	>./start-yarn.sh
+- pornire instanta a bazei de date
+	> cd /usr/local/hbase/bin/
+	> ./start-hbase.sh
+- verificare rulare procese Hadoop
+	> /usr/lib/jvm/default-java/bin/jps
+- rulare script-urile HBase pentru crearea şi popularea bazei de date
+	> cd /usr/local/hbase/bin/
+	> ./hbase shell path_to_erp_DDLc.rb
+	> ./hbase shell path_to_erp_DML.rb
+- rulare program (din Eclipse de preferat)
+
+
+3. Implementare
+În rapoarte sunt omise informaţiile nule, în cazul în care activitatea unui 
+angajat pentru un proiect nu poate fi contorizată conform înregistrărilor 
+reţinute în baza de date.
+
+Pentru a se optimiza timpul de execuţie, raportul sintetic va fi generat pe 
+baza raportului detaliat, fără a accesa baza de date decât spre a obţine 
+departamentul unui angajat.
+
+Detalii despre implementare se gasesc in comentariile din surse (.java si .rb).
+     
+ 
+4. Testare
+	4.1 Mediu de testare:
+		Hardware:
+			Memory: 3.9 GiB
+			Processor: Intel Core i5-2410M CPU @ 2.30GHz x 4
+		Software:
+			OS: Ubuntu 13.04 32-bit Kernel: Linux 3.8.0-35-generic
+                IDE: Eclipse Kepler Service Release 1
+	4.2 Rezultate
+    		Scrierea celor 2 rapoarte se face corect pentru ambele populari
+		ale bazei de date. erp_DML.rb contine un numar mic de date, 
+		pentru observarea corectitudinii algoritmului, in timp ce
+		erp_big_DML.rb contine un volum mult mai pare pentru a observa
+		putearea Hadoop.
+
+ 
+5. Continutul Arhivei
+
+README          - fisier cu detaliile implementarii temei
+ERP             - folder cu surse java, jar, rb si de configurare Eclipse
+scripts/erp_DDLc.rb     - fisier pt crearea bazei de date
+scripts/erp_DDLd.rb     - fisier pt stergerea bazei de date
+scripts/erp_DML.rb      - fisier pt popularea bazei de date (volum date - mic)
+scripts/erp_big_DML.rb  - fisier pt popularea bazei de date (volum date - mare)
+
+
+ 
+
